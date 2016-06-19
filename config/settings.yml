@@ -1,0 +1,7 @@
+plugins:
+  replyto-individual_enabled:
+    default: true
+    client: true
+  replyto-individual_add_replyall_behaviour:
+    default: true
+    client: true

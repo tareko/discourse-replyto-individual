@@ -1,0 +1,27 @@
+# encoding: utf-8
+#
+# This file contains content for the client portion of Discourse, sent out
+# to the Javascript app.
+# 
+# This file renames the "Reply" button to "Reply All" and adds a "Reply individual" button
+# that instead targets a private message to the user.
+#
+
+en:
+  js:
+    composer:
+      reply: "Reply All"
+
+    topic:
+      reply:
+        title: 'Reply All'
+        help: 'begin composing a reply to all users on this topic'
+
+# As of now, leave the post replies untouched. Eventually, we'll have to figure out how to properly
+# address this use so that it's clear to the user that their reply is to a user, but will be part
+# of the thread
+
+    post:
+      reply: "<i class='fa fa-mail-forward'></i> {{replyAvatar}} {{usernameLink}}"
+      reply_topic: "<i class='fa fa-mail-forward'></i> {{link}}"
+      quote_reply: "quote reply"

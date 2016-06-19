@@ -1,0 +1,4 @@
+en:
+  site_settings:
+    replyto-individual_enabled: "Enable GNU/Mailman-like behaviour where \"reply\" in emails will send only to the sending user and \"reply-all\" will send post back to the Discourse forum"
+    replyto-individual_add_replyall_behaviour: "Change behaviour within forum so Reply button replaces flag -> personal message and normal Reply button is renamed as Reply All"
