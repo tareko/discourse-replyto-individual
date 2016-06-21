@@ -7,10 +7,10 @@
 
 PLUGIN_NAME ||= "replyto-individual".freeze
 
-require 'email/message_builder.rb'
 
-module Email
-  class MessageBuilder
+after_initialize do
+  Email::MessageBuilder.class_eval do
+
     def header_args
       result = {}
       if @opts[:add_unsubscribe_link]
@@ -37,7 +37,7 @@ module Email
         result['Reply-To'] = from_value
       end
   
-      result.merge(MessageBuilder.custom_headers(SiteSetting.email_custom_headers))
+      result.merge(Email::MessageBuilder.custom_headers(SiteSetting.email_custom_headers))
     end
   end
 end
