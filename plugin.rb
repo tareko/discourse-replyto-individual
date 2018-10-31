@@ -10,6 +10,7 @@ PLUGIN_NAME ||= "replyto-individual".freeze
 
 after_initialize do
   Email::MessageBuilder.class_eval do
+    attr_reader :template_args
     ALLOW_REPLY_BY_EMAIL_HEADER = 'X-Discourse-Allow-Reply-By-Email'.freeze
 
     def header_args
