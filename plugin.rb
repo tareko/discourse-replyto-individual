@@ -14,18 +14,18 @@ after_initialize do
     def header_args
       result = {}
       if @opts[:add_unsubscribe_link]
-        result['List-Unsubscribe'] = "<#{template_args[:user_preferences_url]}>"
+        unsubscribe_url = @template_args[:unsubscribe_url].presence || @template_args[:user_preferences_url]
+        result['List-Unsubscribe'] = "<#{unsubscribe_url}>"
       end
-  
-      if @opts[:mark_as_reply_to_auto_generated]
-        result[REPLY_TO_AUTO_GENERATED_HEADER_KEY] = REPLY_TO_AUTO_GENERATED_HEADER_VALUE
-      end
-  
-      result['X-Discourse-Post-Id'] = @opts[:post_id].to_s if @opts[:post_id]
+
+      result['X-Discourse-Post-Id']  = @opts[:post_id].to_s  if @opts[:post_id]
       result['X-Discourse-Topic-Id'] = @opts[:topic_id].to_s if @opts[:topic_id]
-  
+
+      # please, don't send us automatic responses...
+      result['X-Auto-Response-Suppress'] = 'All'
+
       if allow_reply_by_email?
-        result['X-Discourse-Reply-Key'] = reply_key
+        result[ALLOW_REPLY_BY_EMAIL_HEADER] = true
         if @opts[:private_reply] == true
           result['Reply-To'] = reply_by_email_address
         else
@@ -36,7 +36,7 @@ after_initialize do
       else
         result['Reply-To'] = from_value
       end
-  
+
       result.merge(Email::MessageBuilder.custom_headers(SiteSetting.email_custom_headers))
     end
   end
