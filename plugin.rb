@@ -59,10 +59,14 @@ after_initialize do
         user_id: user_id
       ).reply_key
 
-      @message.header['Reply-To'] =
-        header_value('Reply-To').gsub!("%{reply_key}", reply_key)
+      if header_value('Reply-To') =~ /reply_key/i
+        @message.header['Reply-To'] =
+          header_value('Reply-To').gsub!("%{reply_key}", reply_key)
+      end
+      if !header_value('CC').blank?
       @message.header['CC'] =
         header_value('CC').gsub!("%{reply_key}", reply_key)
+      end
     end
   end
 end
