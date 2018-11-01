@@ -36,6 +36,7 @@ after_initialize do
           p = Post.find_by_id @opts[:post_id]
           result['Reply-To'] = "#{p.user.name} <#{p.user.email}>"
           result['CC'] = reply_by_email_address
+byebug
         end
       else
         result['Reply-To'] = from_value
@@ -45,7 +46,7 @@ after_initialize do
     end
   end
 
-  // Fix the Email::Sender method to also insert the reply_key into CC
+  # Fix the Email::Sender method to also insert the reply_key into CC
 
   Email::Sender.class_eval do
     def set_reply_key(post_id, user_id)
