@@ -36,7 +36,6 @@ after_initialize do
           p = Post.find_by_id @opts[:post_id]
           result['Reply-To'] = "#{p.user.name} <#{p.user.email}>"
           result['CC'] = reply_by_email_address
-byebug
         end
       else
         result['Reply-To'] = from_value
