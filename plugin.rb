@@ -1,7 +1,7 @@
 # name: replyto-individual plugin
 # about: A plugin that allows exposure of the sender's email address for functionality
 #        similar to GNU/Mailman's Reply_Goes_To_List = Poster
-# version: 0.0.1
+# version: 0.1
 # authors: Tarek Loubani <tarek@>
 # license: aGPLv3
 
