@@ -352,7 +352,7 @@ after_initialize do
 
       # Embeds any of the secure images that have been attached inline,
       # removing the redaction notice.
-      if SiteSetting.secure_media_allow_embed_images_in_emails
+      if SiteSetting.secure_uploads_allow_embed_images_in_emails
         style.inline_secure_images(@message.attachments, @message_attachments_index)
       end
 
