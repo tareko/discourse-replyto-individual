@@ -189,9 +189,7 @@ after_initialize do
         #
         # In the latter case, everyone will start their thread with the canonical reference,
         # because we send it in the References header for all emails.
-        topic_canonical_reference_id = Email::MessageIdService.generate_default(
-          topic, canonical: true, use_incoming_email_if_present: true
-        )
+        topic_canonical_reference_id = Email::MessageIdService.generate_default(topic)
 
         referenced_posts = Post.includes(:incoming_email)
           .joins("INNER JOIN post_replies ON post_replies.post_id = posts.id ")
